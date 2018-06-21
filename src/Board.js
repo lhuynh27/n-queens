@@ -184,7 +184,8 @@
         }
         for (var j = i + 1; j < this.attributes.n; j++) {
           var row2 = this.attributes[j];
-          if (row2[j - 1] === 1) { //checking index decremented by one
+          var index = j - i;
+          if (row2[index] === 1) { //checking index decremented by one
             if (hasPiece) {
               return true;
             } else {
@@ -208,8 +209,10 @@
       for (var i = 0; i < n; i++) {
         var row = this.attributes[i];
         var index = minorDiagonalColumnIndexAtFirstRow - i;
+        if (index < 0) {break;}
         if (row[index] === 1) {
           if (hasPiece) {
+            console.log(i, row, index)
             return true;
           } else {
             hasPiece = true;

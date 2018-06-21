@@ -44,9 +44,12 @@ describe('solvers', function() {
             return memo + col;
           }, 0);
         }, 0);
-
+        console.log(solutionBoard.get('n'));
+        console.log(numPieces);
+        console.log(solutionBoard.hasAnyQueensConflicts());
         expect(solutionBoard.get('n')).to.equal(n);
         expect(numPieces).to.equal(n);
+        if (n === 8) {debugger;}
         expect(solutionBoard.hasAnyQueensConflicts()).to.be.equal(false);
       });
 
@@ -58,7 +61,7 @@ describe('solvers', function() {
             return memo + col;
           }, 0);
         }, 0);
-
+console.log(solutionBoard);
         expect(numPieces).to.equal(0);
         expect(solutionBoard.get('n')).to.equal(n);
       });

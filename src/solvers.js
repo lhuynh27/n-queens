@@ -63,18 +63,17 @@ window.countNRooksSolutions = function(n) {
 
 // return a matrix (an array of arrays) representing a single nxn chessboard, with n queens placed such that none of them can attack each other
 window.findNQueensSolution = function(n) {
-
+  console.log(n);
+  var solution = [];
   if (n === 0) {
-    var solution = 0;
-    // console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution));
+    console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution));
     return solution;
   }
-  var solution = [];
   //empty board matrix of n size
   var board = new Board({n: n});
   //iterate from 0 to n - 1
   var index = 1;
-  debugger;
+  // debugger;
   for (var r = 0; r < n; r++) {
     if (index > n - 1 || n === 1) {
       index = 0;
@@ -82,36 +81,38 @@ window.findNQueensSolution = function(n) {
     board.togglePiece(r, index); //for each row at that index, place a queen at index[i]
     index += 2;
   }
+// if (!board.hasAnyQueensConflicts()) {
   for (var i = 0; i < n; i++) {
     solution.push(board.attributes[i]);
   }
+// }
   console.log('Single solution for ' + n + ' queens:', JSON.stringify(solution));
   return solution;
 };
 
 // return the number of nxn chessboards that exist, with n queens placed such that none of them can attack each other
-window.countNQueensSolutions = function(n) {
-  var solutionCount = 0; //create count of possibilities
-  var board = new Board({n:n}); //create board object for successful queen placements w/in place function
+//window.countNQueensSolutions = function(n) {
+//   var solutionCount = 0; //create count of possibilities
+//   var board = new Board({n:n}); //create board object for successful queen placements w/in place function
   
-  var place = function(currentRow, remainingQueens) { //recursive function that places queens w/out conflict
+//   var place = function(currentRow, remainingQueens) { //recursive function that places queens w/out conflict
     
-    if (remainingQueens === 0) {
-      solutionCount++; //increment solutionCount
-      return solutionCount;
-    }
+//     if (remainingQueens === 0) {
+//       solutionCount++; //increment solutionCount
+//       return solutionCount;
+//     }
     
-    //if not base case
-    for (var c = 0; c < n; c++) { //loop through column indices
-      board.togglePiece(currentRow, c); 
-      if (!board.hasAnyQueensConflicts()) {
-        place(currentRow + 1, remainingQueens - 1); //and place remaining queens
-      }
-      board.togglePiece(currentRow, c);                 
-    }  
-  };
-  place(0, n);
+//     //if not base case
+//     for (var c = 0; c < n; c++) { //loop through column indices
+//       board.togglePiece(currentRow, c); 
+//       if (!board.hasAnyQueensConflicts()) {
+//         place(currentRow + 1, remainingQueens - 1); //and place remaining queens
+//       }
+//       board.togglePiece(currentRow, c);                 
+//     }  
+//   };
+//   place(0, n);
 
-  console.log('Number of solutions for ' + n + ' queens:', solutionCount);
-  return solutionCount;
-};
+//   console.log('Number of solutions for ' + n + ' queens:', solutionCount);
+//   return solutionCount;
+// };
